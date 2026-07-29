@@ -1,5 +1,9 @@
 # DataForSEO MCP Server
 
+> **⚠️ Deprecated:** This version of the DataForSEO MCP server is **deprecated** and will no longer be maintained. It was moved out of the main project into a separate repository.
+>
+> Please use the new, actively supported version instead: **[dataforseo/mcp-server-typescript](https://github.com/dataforseo/mcp-server-typescript)**.
+
 Model Context Protocol (MCP) server implementation for DataForSEO, enabling AI assistants to interact with selected DataForSEO APIs and obtain SEO data through a standardized interface. 
 
 ## Features
