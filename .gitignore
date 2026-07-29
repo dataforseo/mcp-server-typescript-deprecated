@@ -1,0 +1,10 @@
+build/*
+node_modules/*
+.wrangler/*
+src/worker/version.worker.ts
+instruct.txt
+.env
+src/main/test2.ts
+.vscode/launch.json
+.vscode/tasks.json
+.idea/*
