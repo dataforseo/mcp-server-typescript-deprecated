@@ -182,6 +182,12 @@ async function main() {
     app.get('/.well-known/oauth-protected-resource/http', protectedResourceHandler('http'));
   }
 
+  app.get('/health', (_req: Request, res: Response) => {
+    res.status(200).json({
+      status: 'ok'
+    });
+  });
+
   // Apply auth middleware and shared handler to both endpoints
   app.post('/http', authMiddleware, handleMcpRequest);
   app.post('/mcp', authMiddleware, handleMcpRequest);
