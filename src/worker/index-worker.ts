@@ -6,6 +6,7 @@ import { EnabledModulesSchema } from '../core/config/modules.config.js';
 import { BaseModule, ToolDefinition } from '../core/modules/base.module.js';
 import { ModuleLoaderService } from '../core/utils/module-loader.js';
 import { version, name } from './version.worker.js';
+import { clientUserAgentFromExtra, runWithClientUserAgent } from '../core/client/user-agent.js';
 
 /**
  * DataForSEO MCP Server for Cloudflare Workers
@@ -68,7 +69,10 @@ export class DataForSEOMcpAgent extends McpAgent {
             inputSchema: schema.shape,
             annotations: typedTool.annotations,
           },
-          (args) => typedTool.handler(args)
+          (args, extra) => runWithClientUserAgent(
+            clientUserAgentFromExtra(extra),
+            () => typedTool.handler(args)
+          )
         );
       });
 

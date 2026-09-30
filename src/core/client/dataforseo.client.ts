@@ -1,16 +1,17 @@
 import { defaultGlobalToolConfig } from '../config/global.tool.js';
 import { version } from '../utils/version.js';
+import { resolveOutboundUserAgent } from './user-agent.js';
 
 export class DataForSEOClient {
   private config: DataForSEOConfig;
-  private userAgent: string;
+  private productUserAgent: string;
 
   constructor(config: DataForSEOConfig) {
     this.config = config;
     if (defaultGlobalToolConfig.debug) {
       console.error('DataForSEOClient initialized with config:', config);
     }
-    this.userAgent = `DataForSEO-MCP-TypeScript-SDK/${version}`;
+    this.productUserAgent = `DataForSEO-MCP-TypeScript-SDK/${version}`;
   }
 
   async makeRequest<T>(endpoint: string, method: string = 'POST', body?: any, forceFull: boolean = false): Promise<T> {
@@ -22,7 +23,7 @@ export class DataForSEOClient {
     const headers = {
       'Authorization': this.config.authHeader,
       'Content-Type': 'application/json',
-      'User-Agent': this.userAgent
+      'User-Agent': resolveOutboundUserAgent(this.productUserAgent)
     };
 
     if(defaultGlobalToolConfig.debug) {
