@@ -11,7 +11,7 @@ export class DataForSEOClient {
     if (defaultGlobalToolConfig.debug) {
       console.error('DataForSEOClient initialized with config:', config);
     }
-    this.productUserAgent = `DataForSEO-MCP-TypeScript-SDK/${version}`;
+    this.productUserAgent = `DataForSEO-MCP-TypeScript-SDK-Deprecated/${version}`;
   }
 
   async makeRequest<T>(endpoint: string, method: string = 'POST', body?: any, forceFull: boolean = false): Promise<T> {
