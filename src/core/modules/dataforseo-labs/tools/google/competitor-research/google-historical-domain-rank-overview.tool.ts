@@ -35,7 +35,22 @@ example:
       ignore_synonyms: z.boolean().default(true).describe(
           `ignore highly similar keywords, if set to true, results will be more accurate`),        
       include_clickstream_data: z.boolean().optional().default(false).describe(
-        `Include or exclude data from clickstream-based metrics in the result`)
+        `Include or exclude data from clickstream-based metrics in the result`),
+      date_from: z.string().optional().describe(
+        `starting date of the time range
+optional field
+if you don't specify this field, the data will be provided for the previous 6 months
+minimal possible value: 2020-10-01
+date format: "yyyy-mm-dd"
+example:
+"2021-01-01"`),
+      date_to: z.string().optional().describe(
+        `ending date of the time range
+optional field
+if you don't specify this field, the today's date will be used by default
+date format: "yyyy-mm-dd"
+example:
+"2021-04-01"`)
     };
   }
 
@@ -46,7 +61,9 @@ example:
         location_name: params.location_name,
         language_code: params.language_code,
         ignore_synonyms: params.ignore_synonyms,
-        include_clickstream_data: params.include_clickstream_data
+        include_clickstream_data: params.include_clickstream_data,
+        date_from: params.date_from,
+        date_to: params.date_to
       }]);
       return this.validateAndFormatResponse(response);
 
